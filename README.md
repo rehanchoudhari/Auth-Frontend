@@ -25,3 +25,41 @@ Before running the application, make sure you have the following installed:
 
    ```bash
    git clone https://github.com/rehanchoudhari/Auth-Frontend.git
+
+
+- Change into the project directory:
+
+   ```bash
+   cd authentication-system-frontend
+
+- Install dependencies:
+
+   ```bash
+   npm install
+
+## Usage
+
+- Start the development server:
+
+  ```bash
+  npm start
+
+- Open your browser and navigate to http://localhost:3000 to access the Authentication System.
+
+- Home page
+
+![image](https://github.com/rehanchoudhari/Auth-Frontend/assets/74309338/1b75fd43-5882-410e-a8db-ade0ad5dcac9)
+
+
+- Registration page
+
+![image](https://github.com/rehanchoudhari/Auth-Frontend/assets/74309338/52f18ae2-2338-4c8a-95b1-9fc759682aff)
+
+
+- Login page
+
+![image](https://github.com/rehanchoudhari/Auth-Frontend/assets/74309338/cc0a75c0-1788-437f-b376-55de54299fde)
+
+
+
+
