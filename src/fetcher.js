@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8000/'
+const BASE_URL = 'http://13.51.177.65/' // production url
+// const BASE_URL = 'http://localhost:8000/' // local url
 
 const client = axios.create({baseURL: BASE_URL});
 
@@ -55,7 +56,6 @@ export const registerUserApi = (first_name, last_name, email, password, re_passw
         'Content-Type': 'application/json'
     }
     const body = JSON.stringify({first_name, last_name, email, password, re_password});
-    console.log(body);
     return PostMethod('auth/users/', body, headers);
 }
 
@@ -85,11 +85,12 @@ export const activateAccountApi = (uid, token) => {
 }
 
 export const googleLoginApi = async () => {
-    return await axios.get(`http://localhost:8000/auth/o/google-oauth2/?redirect_uri=http://localhost:8000/google`, { withCredentials: true });
+    console.log(`${BASE_URL}auth/o/google-oauth2/?redirect_uri=${BASE_URL}google`)
+    return await axios.get(`${BASE_URL}auth/o/google-oauth2/?redirect_uri=${BASE_URL}google`, { withCredentials: true });
 }
 
 export const facebookLoginApi = async () => {
-    return await axios.get(`http://localhost:8000/auth/o/facebook/?redirect_uri=http://localhost:8000/facebook`, { withCredentials: true })
+    return await axios.get(`${BASE_URL}auth/o/facebook/?redirect_uri=${BASE_URL}facebook`, { withCredentials: true })
 }
 
 export const googleAuthenticateApi = async (state, code) =>{

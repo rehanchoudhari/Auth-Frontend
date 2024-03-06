@@ -116,7 +116,7 @@ const Signup = ({ signup, isAuthenticated }) => {
             </div>
             {error && <div style={{ color: 'red'}}>{error}</div>}
             {/* {successMessage && <p>{successMessage}</p>} */}
-            <button className='btn btn-primary' type='submit'>Login</button>
+            <button className='btn btn-primary' type='submit'>Signup</button>
         </form>
         <button className='btn btn-danger mt-3' onClick={continueWithGoogle}>
             Continue With Google

@@ -19,7 +19,7 @@ const ResetPasswordConfirm = ({ resetConfirmPassword }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    resetConfirmPassword(uid, token, new_password, re_new_password);
+    await resetConfirmPassword(uid, token, new_password, re_new_password);
     setRequestSent(true);
   }
 
