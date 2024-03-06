@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = 'http://13.51.177.65/' // production
-// const BASE_URL = 'http://localhost:8000/' // local
+const BASE_URL = 'http://13.51.177.65/' // production url
+// const BASE_URL = 'http://localhost:8000/' // local url
 
 const client = axios.create({baseURL: BASE_URL});
 
