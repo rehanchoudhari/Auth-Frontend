@@ -1,58 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../action/auth';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
-const Navbar = ({ logout, isAuthenticated }) => {
-    const navigate = useNavigate();
-    const logoutUser = () => {
-      logout();
+const Navigation = ({ logout, isAuthenticated }) => {
+  const navigate = useNavigate();
+
+  const logoutUser = () => {
+    logout();
+  };
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
     }
-
-
-    React.useEffect(() => {
-      if(isAuthenticated){
-        navigate('/')
-      }
-    }, [isAuthenticated, navigate])
-
-    const guestLink = () =>(
-        <>
-          <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-          </li>
-          <li className="nav-item">
-              <Link className="nav-link" to="/signup">Signup</Link>
-          </li>
-        </>
-    )
-
-    const authLink = () => (
-        <li className="nav-item">
-            <Link className="nav-link" to='/' onClick={() => logoutUser()}>Logout</Link>
-        </li>
-    )
+  }, [isAuthenticated, navigate]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">Navbar</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">Home <span className="sr-only"></span></Link>
-          </li>
-          { isAuthenticated ? authLink() : guestLink()}
-        </ul>
-      </div>
-    </nav>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand as={Link} to="/">
+        Navbar
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link as={Link} to="/" className="nav-link">
+            Home
+          </Nav.Link>
+          {isAuthenticated ? (
+            <Nav.Link as={Link} to="/" onClick={logoutUser} className="nav-link">
+              Logout
+            </Nav.Link>
+          ) : (
+            <>
+              <Nav.Link as={Link} to="/login" className="nav-link">
+                Login
+              </Nav.Link>
+              <Nav.Link as={Link} to="/signup" className="nav-link">
+                Signup
+              </Nav.Link>
+            </>
+          )}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-})
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout })(Navigation);
